@@ -1,0 +1,17 @@
+// Human age
+const myAge = 30; // Replace with your actual age
+
+// First two years of a dog's life count as 10.5 dog years each
+const earlyYears = 2 * 10.5;
+
+// Remaining human years after the first two
+const laterYears = (myAge - 2) * 4;
+
+// Total age in dog years
+const myAgeInDogYears = earlyYears + laterYears;
+
+// Your name in lowercase
+const myName = 'Jennifer'.toLowerCase();
+
+// Output
+console.log(`My name is ${myName}. I am ${myAge} years old in human years which is ${myAgeInDogYears} years old in dog years.`);
