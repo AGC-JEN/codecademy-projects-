@@ -1,0 +1,30 @@
+// The forecast temperature in Kelvin
+const kelvin = 293;
+console.log(kelvin); // Output: 293
+
+// Convert Kelvin to Celsius
+let celsius = kelvin - 273;
+console.log(celsius); // Output: 20
+
+// Convert Celsius to Fahrenheit
+let fahrenheit = celsius * (9 / 5) + 32;
+console.log(fahrenheit); // Output: 68
+
+// Round down Fahrenheit
+fahrenheit = Math.floor(fahrenheit);
+console.log(fahrenheit); // Output: 68
+
+// Print the final temperature in Fahrenheit
+console.log(`The temperature is ${fahrenheit} degrees Fahrenheit.`);
+
+// Example with 0 Kelvin
+const newKelvin = 0;
+let newCelsius = newKelvin - 273;
+let newFahrenheit = newCelsius * (9 / 5) + 32;
+newFahrenheit = Math.floor(newFahrenheit);
+console.log(`The temperature is ${newFahrenheit} degrees Fahrenheit.`);
+
+// Convert Celsius to Newton
+let newton = celsius * (33 / 100);
+newton = Math.floor(newton);
+console.log(`The temperature is ${newton} degrees Newton.`);
