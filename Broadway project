@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Are Broadway</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    header {
+      background-color: #333;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav {
+      margin: 0;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      color: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      display: inline-block;
+      width: 80px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav li:hover {
+      color: #f0c040;
+    }
+
+    main {
+      text-align: center;
+      margin-top: 100px; /* prevent header overlap */
+    }
+
+    main h1 {
+      color: #333;
+      font-weight: 600;
+      font-size: 70px;
+      margin: 0;
+      padding-top: 80px;
+      margin-bottom: 80px;
+      text-transform: uppercase;
+    }
+
+    .jumbotron {
+      height: 800px;
+      background-image: url("https://content.codecademy.com/projects/broadway/bg.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 0 10px;
+      text-align: center;
+    }
+
+    .btn-main {
+      background-color: #333;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 1.3px;
+      padding: 16px 40px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-main:hover {
+      background-color: #f0c040;
+      color: #333;
+    }
+
+    .supporting {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .supporting .col {
+      display: inline-block;
+      width: 250px;
+      vertical-align: top;
+      margin: 20px;
+    }
+
+    .supporting img {
+      height: 40px;
+      margin-bottom: 15px;
+    }
+
+    .supporting h2 {
+      font-weight: 600;
+      font-size: 23px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .supporting p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0 20px;
+      margin-bottom: 20px;
+    }
+
+    .supporting a {
+      background-color: white;
+      color: #333;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 1.3px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 15px;
+      border: 2px solid #333;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .supporting a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 30px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer p {
+      text-transform: uppercase;
+      font-size: 11px;
+      margin: 0;
+    }
+
+    body {
+      padding-bottom: 80px; /* prevent footer overlap */
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      main h1 {
+        font-size: 50px;
+        padding: 0 20px;
+      }
+
+      .supporting .col {
+        display: block;
+        width: 90%;
+        margin: 0 auto 40px auto;
+      }
+
+      nav li {
+        width: auto;
+        margin: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li>About</li>
+        <li>Work</li>
+        <li>Team</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>We are Broadway</h1>
+        <a href="#" class="btn-main">Get Started</a>
+      </div>
+    </div>
+  </main>
+
+  <section class="supporting">
+    <div class="container">
+      <div class="col">
+        <img src="https://content.codecademy.com/projects/broadway/design.svg" alt="Design icon">
+        <h2>Design</h2>
+        <p>Make your projects look great and interact beautifully.</p>
+        <a href="#">Learn More</a>
+      </div>
+
+      <div class="col">
+        <img src="https://content.codecademy.com/projects/broadway/develop.svg" alt="Develop icon">
+        <h2>Develop</h2>
+        <p>Use modern tools to turn your design into a website.</p>
+        <a href="#">Learn More</a>
+      </div>
+
+      <div class="col">
+        <img src="https://content.codecademy.com/projects/broadway/deploy.svg" alt="Deploy icon">
+        <h2>Deploy</h2>
+        <p>Launch your site with confidence and share it with the world.</p>
+        <a href="#">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; Broadway 2017</p>
+    </div>
+  </footer>
+
+</body>
+</html>
