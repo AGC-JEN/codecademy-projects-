@@ -70,3 +70,88 @@ git commit -m "Add meal plan for Western Lowland Gorilla"
 View commit history
 
 git log
+
+Print the working directory
+
+pwd
+
+
+List files and directories in the working directory
+
+ls
+
+
+Change directories to the freight/ directory
+
+cd freight/
+
+
+List files and directories in the working directory
+
+ls
+
+
+Change directories to the porteur/ directory
+
+cd porteur/
+
+
+Change directories up two levels to bicycle-world-ii/
+
+cd ../..
+
+
+List the files and directories in bicycle-world-ii/
+
+ls
+
+
+Change directories to mountain/downhill/
+
+cd mountain/downhill/
+
+
+Make a file called dirt.txt
+
+touch dirt.txt
+
+
+Make a file called mud.txt
+
+touch mud.txt
+
+
+List the files and directories in the downhill/ directory
+
+ls
+
+
+Create a directory called safety/ in downhill/
+
+mkdir safety
+
+
+Change directories to bicycle-world-ii/
+
+cd ../../
+
+
+List the contents of bicycle-world-ii/
+
+ls
+
+
+Make a directory called bmx/ in bicycle-world-ii/
+
+mkdir bmx
+
+
+Without changing directories, make a file tricks.txt inside bmx/
+
+touch bmx/tricks.txt
+
+
+List all files and directories in the current directory
+
+ls
+
