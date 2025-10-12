@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Tea Cozy</title>
+
+  <style>
+  /* =======================
+     Global Styles
+  ======================= */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: Helvetica, sans-serif;
+    font-size: 22px;
+    color: seashell;
+    background-color: black;
+    opacity: 0.9;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* =======================
+     Header
+  ======================= */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 69px;
+    background-color: black;
+    border-bottom: 1px solid seashell;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+
+  .nav {
+    display: flex;
+    gap: 25px;
+  }
+
+  .nav a {
+    color: seashell;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+  }
+
+  .nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* =======================
+     Mission Section
+  ======================= */
+  .mission {
+    background-image: url('img-mission-background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 69px; /* space for fixed header */
+  }
+
+  .mission-text {
+    background-color: black;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    opacity: 0.9;
+  }
+
+  /* =======================
+     Featured Section
+  ======================= */
+  .featured {
+    padding: 70px 0;
+    background-color: black;
+  }
+
+  .featured h2,
+  .featured h4 {
+    margin: 10px 0;
+  }
+
+  .tea-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .tea-card {
+    background-color: black;
+    width: 300px;
+    transition: transform 0.3s ease;
+  }
+
+  .tea-card:hover {
+    transform: scale(1.05);
+  }
+
+  .tea-card img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .tea-card p {
+    margin-top: 10px;
+  }
+
+  /* =======================
+     Locations Section
+  ======================= */
+  .locations {
+    background-image: url('img-locations-background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .locations h2 {
+    background-color: black;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+  }
+
+  .location-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .location-card {
+    background-color: black;
+    width: 300px;
+    padding: 20px;
+    opacity: 0.9;
+  }
+
+  /* =======================
+     Footer
+  ======================= */
+  footer {
+    background-color: black;
+    padding: 40px 0;
+  }
+
+  footer h5 a {
+    color: seashell;
+    text-decoration: none;
+  }
+
+  footer h5 a:hover {
+    text-decoration: underline;
+  }
+
+  footer p {
+    margin: 5px 0;
+  }
+
+  footer .copyright {
+    font-size: 0.8em;
+    color: gray;
+    margin-top: 20px;
+  }
+
+  /* =======================
+     Responsive Design
+  ======================= */
+
+  /* Tablets and below */
+  @media (max-width: 1024px) {
+    body {
+      font-size: 20px;
+    }
+
+    .nav {
+      gap: 15px;
+    }
+
+    .mission {
+      height: 500px;
+    }
+
+    .tea-card {
+      width: 260px;
+    }
+
+    .tea-card img {
+      width: 260px;
+      height: 180px;
+    }
+
+    .locations {
+      height: auto;
+      padding: 60px 0;
+    }
+
+    .location-card {
+      width: 260px;
+    }
+  }
+
+  /* Phones */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      height: auto;
+      padding: 15px;
+    }
+
+    .nav {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mission {
+      height: 400px;
+    }
+
+    .mission-text {
+      padding: 15px;
+    }
+
+    .tea-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tea-card {
+      width: 90%;
+      max-width: 350px;
+    }
+
+    .tea-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .locations h2 {
+      font-size: 1.4em;
+    }
+
+    .location-grid {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .location-card {
+      width: 90%;
+      max-width: 350px;
+    }
+
+    footer {
+      font-size: 18px;
+    }
+  }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Tea Cozy</div>
+    <nav class="nav">
+      <a href="#mission">Mission</a>
+      <a href="#featured">Featured Tea</a>
+      <a href="#locations">Locations</a>
+    </nav>
+  </header>
+
+  <!-- Mission Section -->
+  <section id="mission" class="mission">
+    <div class="mission-text">
+      <h2>Our Mission</h2>
+      <h4>
+        Handpicked, Artisanally Curated, Free Range, Sustainable, Small Batch, Fair Trade, Organic Tea
+      </h4>
+    </div>
+  </section>
+
+  <!-- Featured Section -->
+  <section id="featured" class="featured">
+    <h2>Tea of the Month</h2>
+    <h4>What's Steeping at The Tea Cozy?</h4>
+    <div class="tea-grid">
+      <div class="tea-card"><img src="img-berryblitz.jpg" alt=""><p>Fall Berry Blitz Tea</p></div>
+      <div class="tea-card"><img src="img-spiced-rum.jpg" alt=""><p>Spiced Rum Tea</p></div>
+      <div class="tea-card"><img src="img-donut.jpg" alt=""><p>Seasonal Donuts</p></div>
+      <div class="tea-card"><img src="img-myrtle-ave.jpg" alt=""><p>Myrtle Ave Tea</p></div>
+      <div class="tea-card"><img src="img-bedford-bizarre.jpg" alt=""><p>Bedford Bizarre Tea</p></div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section id="locations" class="locations">
+    <h2>Locations</h2>
+    <div class="location-grid">
+      <div class="location-card">
+        <h3>Downtown</h3>
+        <p>384 West 4th St<br>Suite 108<br>Portland, Maine</p>
+      </div>
+      <div class="location-card">
+        <h3>East Bayside</h3>
+        <p>3433 Phisherman’s Avenue<br>(Northwest Corner)<br>Portland, Maine</p>
+      </div>
+      <div class="location-card">
+        <h3>Oakdale</h3>
+        <p>515 Crescent Avenue<br>Second Floor<br>Portland, Maine</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h2>The Tea Cozy</h2>
+    <h5><a href="mailto:contact@theteacozy.com">contact@theteacozy.com</a></h5>
+    <p>917-555-8904</p>
+    <p class="copyright">copyright The Tea Cozy 2017</p>
+  </footer>
+</body>
+</html>
