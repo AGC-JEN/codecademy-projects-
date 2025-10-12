@@ -1,0 +1,36 @@
+// Convert Kelvin to Celsius
+function kelvinToCelsius(kelvin) {
+  return kelvin - 273.15;
+}
+
+// Convert Celsius to Fahrenheit
+function celsiusToFahrenheit(celsius) {
+  return celsius * (9 / 5) + 32;
+}
+
+// Convert Celsius to Newton
+function celsiusToNewton(celsius) {
+  return celsius * (33 / 100);
+}
+
+// Example 1: Kelvin = 293
+const kelvin = 293;
+
+let celsius = kelvinToCelsius(kelvin);
+let fahrenheit = Math.floor(celsiusToFahrenheit(celsius));
+let newton = Math.floor(celsiusToNewton(celsius));
+
+console.log(`The temperature is ${celsius.toFixed(2)}°C.`);
+console.log(`The temperature is ${fahrenheit}°F.`);
+console.log(`The temperature is ${newton}°N.`);
+
+// Example 2: Kelvin = 0
+const newKelvin = 0;
+
+celsius = kelvinToCelsius(newKelvin);
+fahrenheit = Math.floor(celsiusToFahrenheit(celsius));
+newton = Math.floor(celsiusToNewton(celsius));
+
+console.log(`The temperature is ${celsius.toFixed(2)}°C.`);
+console.log(`The temperature is ${fahrenheit}°F.`);
+console.log(`The temperature is ${newton}°N.`);
