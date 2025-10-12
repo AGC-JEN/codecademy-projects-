@@ -1,0 +1,38 @@
+.breadcrumb {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.breadcrumb > li {
+  display: inline;
+  font-size: 14px;
+}
+
+.breadcrumb li.location + li.location::before {
+  content: " / ";       /* separator between locations */
+  color: #2176FF;       /* primary blue */
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #2176FF;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  color: #5495ff;       /* lighter hover blue */
+}
+
+.breadcrumb .attribute a {
+  color: gray;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.breadcrumb .attribute a::after {
+  content: " ✕";        /* shows removable filter */
+  margin-left: 4px;
+  font-size: 0.8em;
+}
