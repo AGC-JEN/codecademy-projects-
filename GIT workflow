@@ -1,0 +1,28 @@
+Git Workflow Summary
+
+Initialize repository
+
+git init
+
+
+Add Long-Tailed Chinchillas
+
+git add meal-regimens.txt
+git commit -m "Add meal plan for Long-Tailed Chinchillas"
+
+
+Add Poison Dart Frogs
+
+git add meal-regimens.txt
+git commit -m "Add meal plan for Poison Dart Frogs"
+
+
+Add Western Lowland Gorilla
+
+git add meal-regimens.txt
+git commit -m "Add meal plan for Western Lowland Gorilla"
+
+
+View commit history
+
+git log
