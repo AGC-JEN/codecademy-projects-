@@ -1,0 +1,114 @@
+1. Fix Duplicate/Overlapping CSS
+
+You have multiple global a selectors at the top:
+
+{
+  color: #2176FF;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+
+The first block is missing a selector — it should likely be:
+
+a {
+  color: #2176FF;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+Also, later you have:
+
+a {
+  cursor: default;
+  text-decoration-line: none;
+}
+
+
+This will override the first styles and remove the underline and pointer cursor for all links. Decide which style you want for links globally, or scope them to .nav-link, .activity, or other specific classes.
+
+2. Navigation Markup
+
+Currently:
+
+<ul>
+  <a class="nav-link">The Lodge</a>
+  <a class="nav-link">Our Ski Runs</a>
+  ...
+</ul>
+
+
+Best practice: <ul> should contain <li> elements, and <a> goes inside <li>:
+
+<ul>
+  <li><a class="nav-link">The Lodge</a></li>
+  <li><a class="nav-link">Our Ski Runs</a></li>
+  <li><a class="nav-link logo">The Summit</a></li>
+  <li><a class="nav-link">How to Get Here</a></li>
+  <li><a class="nav-link">Contact</a></li>
+</ul>
+
+
+This improves semantic HTML and accessibility.
+
+3. Banner Section
+
+You have overlapping text and a large <h2> inside the banner:
+
+.banner h2{
+  font-size: 120px;
+  margin: -40px 0px 80px 0px;
+}
+
+
+Consider using relative units (em, rem, vw) for responsiveness.
+
+Use position: absolute with text-align: center on .banner-text if you want to vertically center on different screen sizes.
+
+4. Activities Panel
+
+You are using <a> elements for the activity blocks without href. If these are not actual links:
+
+<a class="activity">Skiing</a>
+
+
+Better to use <div class="activity">Skiing</div> for semantic clarity.
+
+Keep the hover/active effects with .activity:hover and .activity:active.
+
+5. CSS Transition Improvements
+
+You have transition applied to .activity:hover and .activity:active. Combine them for smoothness:
+
+.activity {
+  transition: all 0.2s ease-in-out;
+}
+
+
+Then remove repeated transition from hover/active.
+
+6. Responsive Considerations
+
+Banner is height: 700px, large fixed height can break on mobile.
+
+Use @media queries to adjust .banner, .banner h1, .banner h2, .activities-panel .activity width and font-size for smaller screens.
+
+7. Footer
+
+You have:
+
+.footer h2{
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+
+
+This is fine, but if you plan to add more info, consider using <p> or <address> tags instead of <h2> for accessibility.
