@@ -1,0 +1,206 @@
+1. Header & Footer
+header, footer {
+  background-color: #ffa500;
+  text-align: center;
+  min-width: 500px;
+}
+
+
+✅ Good:
+
+Consistent branding with the orange color.
+
+Centered content is visually appealing.
+
+⚠️ Improvements:
+
+Use padding instead of relying solely on image size for spacing:
+
+header, footer {
+  padding: 20px 0;
+}
+
+
+Consider flexbox for the header if you want logo + nav later:
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+2. Main Grid Layout
+main {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  grid-template-rows: repeat(3, 450px);
+  gap: 20px;
+  margin-top: 44px;
+  grid-auto-rows: 500px;
+}
+
+
+✅ Good:
+
+Two-column grid with gaps is clean.
+
+Each recipe card has a consistent height.
+
+⚠️ Improvements:
+
+Responsive design: On smaller screens, two columns may overflow. Use auto-fit and minmax:
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 44px;
+}
+
+
+Remove grid-template-rows and grid-auto-rows, unless you want strict height control. Let content dictate height.
+
+3. Recipe Cards
+.recipe {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+
+✅ Good:
+
+Subtle shadow adds depth.
+
+⚠️ Improvements:
+
+Add padding & border-radius for better spacing and rounded corners:
+
+.recipe {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+.recipe img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+Add consistent spacing between <h2>, .time, .mins, and .description:
+
+.recipe h2 {
+  margin: 10px;
+}
+.recipe .time {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+.recipe .mins {
+  margin-left: 5px;
+}
+.recipe .description {
+  margin: 10px;
+  border-top: 1px solid #4a4a4a;
+  padding-top: 10px;
+}
+
+4. Typography
+h2 {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-align: left;
+  color: #ffa500;
+  padding: 10px 0px 10px 10px;
+}
+.description {
+  font-family: Work Sans;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.29;
+  color: #4a4a4a;
+}
+
+
+✅ Good:
+
+Different fonts for headings vs. descriptions.
+
+Color scheme matches branding.
+
+⚠️ Improvements:
+
+Increase line-height for better readability:
+
+.description {
+  line-height: 1.5;
+}
+
+
+Use rem instead of px for scalable text:
+
+h2 { font-size: 1.125rem; }
+.description { font-size: 0.875rem; }
+
+5. Images & Logos
+.logo {
+  width: 115px;
+  height: 21.1px;
+  object-fit: contain;
+  padding: 20px;
+}
+
+
+✅ Good:
+
+Fixed logo size ensures consistency.
+
+⚠️ Improvement:
+
+Consider max-width: 100% for responsiveness:
+
+.logo {
+  max-width: 115px;
+  height: auto;
+  padding: 20px;
+}
+
+
+Ensure recipe images have alt text for accessibility.
+
+6. Container
+.container {
+  min-width: 500px;
+  margin: auto;
+}
+
+
+⚠️ Improvement:
+
+Instead of a fixed min-width, use responsive padding:
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+
+✅ Optional Enhancements
+
+Add hover effect on recipe cards:
+
+.recipe:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s;
+}
+
+
+Make time icon and minutes inline:
+
+.time, .mins {
+  display: inline-block;
+  vertical-align: middle;
+}
