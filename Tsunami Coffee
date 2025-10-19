@@ -1,0 +1,154 @@
+1. Main Hero Section
+.main {
+  height: 30rem;
+  background-image: url("...");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+
+✅ Good use of cover to fill the hero area.
+
+💡 Suggestion: Add display: flex; justify-content: center; align-items: center; to vertically center the logo without using margin:
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+2. Navigation
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+
+✅ Great use of flexbox and gap.
+
+💡 Suggestion: For accessibility, wrap links in <a> tags instead of plain <li> text:
+
+<nav>
+  <ul>
+    <li><a href="#">Store</a></li>
+    <li><a href="#">Hours</a></li>
+    <li><a href="#">Wholesale</a></li>
+  </ul>
+</nav>
+
+
+And style the links:
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+3. Supporting Section
+.supporting {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 4em auto;
+}
+
+
+✅ Works well on wide screens.
+
+💡 Suggestion: You already have a media query for small screens, but consider adding flex-wrap: wrap; for mid-sized screens to avoid overflow:
+
+.supporting {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+4. Rating Section
+.rating {
+  background-color: orangered;
+  height: 20rem;
+  padding: 0 1rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+✅ Flex centering is perfect.
+
+💡 Tip: Instead of fixed height, consider min-height for better responsiveness:
+
+.rating {
+  min-height: 20rem;
+}
+
+5. Gallery Section
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 4em auto;
+  gap: 1.5%;
+}
+
+
+✅ Works, but using percentages for gap can cause uneven spacing.
+
+💡 Suggestion: Use gap: 1rem for consistent spacing:
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+6. Footer
+footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+✅ Perfect use of flexbox for responsiveness.
+
+💡 Suggestion: Add padding-top: 2rem; for more breathing space on small screens.
+
+7. Accessibility
+
+Add alt text to all images.
+
+Use semantic elements like <header>, <main>, <section>, <footer> (you can wrap .main in <header> for clarity).
+
+8. Mobile Responsiveness
+
+Your media queries are solid. I’d only recommend adding one for .main img so the logo shrinks on tiny screens:
+
+@media (max-width: 470px) {
+  .main img {
+    width: 10rem;
+  }
+}
+
+
+✅ Summary:
+
+Use flexbox in .main for centering logo.
+
+Replace plain <li> with <a> for accessibility.
+
+Add alt text to images.
+
+Consider min-height for .rating and consistent gap in .gallery.
+
+Slight tweaks in media queries improve responsiveness.
