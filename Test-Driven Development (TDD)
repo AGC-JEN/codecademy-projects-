@@ -1,0 +1,45 @@
+// Import assert and your Calculate module
+var assert = require("assert");
+var Calculate = require("../index.js");
+
+// Describe the Calculate object
+describe('Calculate', () => {
+
+  // Describe the .factorial() method
+  describe('.factorial', () => {
+
+    // 1a — Test factorial of 5 equals 120
+    it('returns 120 when the input is 5', () => {
+      // Setup
+      const input = 5;
+      const expected = 120;
+      // Exercise
+      const result = Calculate.factorial(input);
+      // Verify
+      assert.equal(result, expected);
+    });
+
+    // 5 — Add another test for input 3 (should return 6)
+    it('returns 6 when the input is 3', () => {
+      // Setup
+      const input = 3;
+      const expected = 6;
+      // Exercise
+      const result = Calculate.factorial(input);
+      // Verify
+      assert.equal(result, expected);
+    });
+
+    // 8 — Edge case: test code for 0!
+    it('returns 1 when the input is 0', () => {
+      // Setup
+      const input = 0;
+      const expected = 1;
+      // Exercise
+      const result = Calculate.factorial(input);
+      // Verify
+      assert.equal(result, expected);
+    });
+
+  });
+});
