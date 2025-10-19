@@ -1,0 +1,133 @@
+1. Grid Syntax Errors
+.grid {
+  display: grid;
+  grid-template-oolumns: repeat(6, 1fr);
+  grid-template: 100px 8fr 4fr 5fr 80px/ 6 1fr;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+
+❌ Issues:
+
+Typo: grid-template-oolumns → should be grid-template-columns.
+
+grid-template shorthand is incorrect. grid-template: <rows> / <columns> needs proper syntax.
+
+You seem to want 6 equal columns and some specific row heights; we can clean it up.
+
+✅ Corrected version:
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 100px 200px 200px 200px 80px; /* adjust heights as needed */
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+2. Grid Placement
+
+Some of your grid-column properties are invalid:
+
+.address { grid-column: 2/ span 2; }
+.hours { grid-column: 3/ span 4; }
+.call-us { grid-column: 5/ span 6; }
+
+
+❌ Issues:
+
+span syntax should be: grid-column: start / span n;.
+
+call-us spans beyond the 6 columns (column 5 / span 6 → ends at column 11).
+
+✅ Corrected version:
+
+.address { grid-column: 1 / span 2; }
+.hours { grid-column: 3 / span 2; }
+.call-us { grid-column: 5 / span 2; }
+
+3. Image Sizing in Banner
+img {
+  height: 5em;
+  margin-left: 75px;
+}
+
+
+❌ Issue: Using a fixed margin-left will break on smaller screens.
+
+✅ Better approach:
+
+.banner img {
+  height: 5em;
+  margin: 0 auto;
+  display: block;
+}
+
+
+Centers image in its grid area.
+
+4. Text Containers
+p, .banner-contents {
+  max-width: 80%;
+  margin: auto;
+}
+
+
+✅ Good: restricts text width, centers content.
+
+⚠️ Suggestion: limit p inside .about separately to avoid banner affecting it:
+
+.about p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+5. Testimonials
+.one { grid-column: 1/ span 3; }
+.two { grid-column: 4/ span 3; }
+
+
+✅ Correct usage. Just ensure the parent .grid has 6 columns.
+
+6. Footer
+footer {
+  grid-column-start: 1;
+  grid-column-end: 7;
+}
+
+
+✅ Fine. Or shorthand:
+
+footer { grid-column: 1 / -1; }
+
+
+-1 automatically spans to the last column.
+
+7. Additional Tips
+
+Use gap instead of separate row-gap and column-gap:
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 100px 200px 200px 200px 80px;
+  gap: 20px;
+}
+
+
+Make layout responsive with @media queries. Example for mobile:
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .address, .hours, .call-us {
+    grid-column: 1 / -1;
+  }
+
+  .one, .two {
+    grid-column: 1 / -1;
+  }
+}
