@@ -1,0 +1,18 @@
+✅ Output
+console.log(survivingPAequor);
+
+
+This will show an array of 30 pAequor objects with DNA likely to survive, each with its own specimenNum and dna.
+
+💡 Tips / Improvements
+
+Avoid repeating random base selection in mutate()
+
+You could filter out the current base and randomly select from the remaining three:
+
+const mutate = () => {
+  const randIndex = Math.floor(Math.random() * dna.length);
+  const bases = ['A', 'T', 'C', 'G'].filter(b => b !== dna[randIndex]);
+  dna[randIndex] = bases[Math.floor(Math.random() * bases.length)];
+  return dna;
+};
