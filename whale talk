@@ -1,0 +1,33 @@
+You’re on the right track building a “Whale Talk” translator! Your current code works but it has a redundancy issue: you’re pushing vowels to resultArray multiple times, especially 'e' and 'u'. Right now:
+
+if (input[i] === 'e') { resultArray.push(input[i]); }
+...
+for (let j = 0; j < vowels.length; j++) {
+  if (input[i] === vowels[j]) { resultArray.push(input[i]); }
+}
+
+
+This means 'e' gets pushed twice. We can clean it up to follow the standard “Whale Talk” rules:
+
+Duplicate 'e' and 'u' vowels.
+
+Convert the final string to uppercase.
+
+Here’s a cleaned-up version:
+
+let input = 'whale talk';
+const vowels = ["a", "e", "i", "o", "u"];
+let resultArray = [];
+
+for (let i = 0; i < input.length; i++) {
+  let char = input[i];
+  if (vowels.includes(char)) {
+    resultArray.push(char);
+    // Duplicate 'e' and 'u' for Whale Talk
+    if (char === 'e' || char === 'u') {
+      resultArray.push(char);
+    }
+  }
+}
+
+console.log(resultArray.join('').toUpperCase()); // Output: WHAEEAALK
