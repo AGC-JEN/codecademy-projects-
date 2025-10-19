@@ -1,0 +1,42 @@
+// ==========================================================================
+// 🗒️ NOTE — UN API Project: Redux Toolkit Migration
+// --------------------------------------------------------------------------
+// This slice has been refactored from legacy Redux to Redux Toolkit (RTK)
+// to improve maintainability, readability, and API integration efficiency.
+//
+// Key Points:
+// • Uses createSlice() to auto-generate reducers and action creators.
+// • Allows direct state mutation (via Immer) for simpler immutable logic.
+// • Streamlines UN API financial data — budgets, allocations, transactions.
+// • Prepares for integration with secure UN API endpoints.
+//
+// Future Implementation:
+// • Connect with live budget/transaction API data.
+// • Add authentication layer for role-based access (UN accounts).
+// • Extend reporting for transparency and audit compliance.
+//
+// Author: [Your Name or Team]
+// Repository: [Private GitHub Repository Name]
+// ==========================================================================
+
+
+// ==========================================================================
+// 🗒️ NOTE — UN API Project: Transaction Module Refactor
+// --------------------------------------------------------------------------
+// This slice handles the transaction records for the UN API system.
+// Refactored using Redux Toolkit to support live API integration,
+// predictable state transitions, and modular reporting.
+//
+// Features:
+// • createSlice() structure for action/reducer consistency.
+// • Handles async requests for transaction syncing.
+// • Ensures compatibility with UN budget oversight modules.
+//
+// To-Do:
+// • Connect to secure UN API transaction endpoints.
+// • Implement real-time synchronization with external dashboards.
+// • Integrate data validation middleware before commit.
+//
+// Author: [Your Name or Team]
+// Repository: [Private GitHub Repository Name]
+// ==========================================================================
