@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Improved Semantic and Responsive Layout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="supporting" aria-label="Supporting Information">
+    <div class="col">
+      <img src="image1.jpg" alt="Team collaborating at work" />
+      <h2>Our Mission</h2>
+      <p>We build impactful digital experiences that connect brands to people.</p>
+    </div>
+
+    <div class="col">
+      <img src="image2.jpg" alt="Project showcase with laptop and sketches" />
+      <h2>Our Work</h2>
+      <p>From concept to launch, we craft solutions that inspire engagement.</p>
+    </div>
+
+    <div class="col">
+      <img src="image3.jpg" alt="Creative team members brainstorming" />
+      <h2>Join the Team</h2>
+      <p>We’re always looking for passionate innovators who love collaboration.</p>
+    </div>
+  </section>
+
+  <section class="jumbotron">
+    <h1>Welcome to Our World</h1>
+    <p>Designing experiences that shape tomorrow’s digital future.</p>
+    <button class="btn-main">Learn More</button>
+  </section>
+
+</body>
+</html>
