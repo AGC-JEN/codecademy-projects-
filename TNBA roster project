@@ -1,0 +1,13 @@
+[
+  { firstName: 'Kyle', lastName: 'Korver', age: 13 },
+  { firstName: 'Kevin', lastName: 'Connaughton', age: 12 },
+  { firstName: 'Bubba', lastName: 'Antetokounmpo', age: 11 },
+  { firstName: 'Bugs', lastName: 'Bunny', age: 76 }
+]
+
+[
+  { opponent: 'Gnomes', teamPoints: 42, opponentPoints: 27 },
+  { opponent: 'Rascals', teamPoints: 38, opponentPoints: 35 },
+  { opponent: 'Birdies', teamPoints: 25, opponentPoints: 30 },
+  { opponent: 'Titans', teamPoints: 100, opponentPoints: 98 }
+]
