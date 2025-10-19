@@ -1,0 +1,45 @@
+import React, { useState } from 'react';
+
+// NOTE: This file comes with registration for the React authentication mini-project.
+function Contact() {
+  const password = 'swordfish';
+  const [authorized, setAuthorized] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault(); // Prevents page reload
+    const enteredPassword = e.target.querySelector('input[type="password"]').value;
+    const auth = enteredPassword === password;
+    setAuthorized(auth);
+  }
+
+  // STEP 4: Create the login form
+  const login = (
+    <form action="#" onSubmit={handleSubmit}>
+      <input
+        type="password"
+        placeholder="Password"
+      />
+      <input
+        type="submit"
+      />
+    </form>
+  );
+
+  // STEP 6: Create the contact info JSX
+  const contactInfo = (
+    <ul>
+      <li>client@example.com</li>
+      <li>555.555.5555</li>
+    </ul>
+  );
+
+  // STEP 2 + 7: Conditional rendering using a ternary operator
+  return (
+    <div id="authorization">
+      <h1>{authorized ? 'Contact' : 'Enter the Password'}</h1>
+      {authorized ? contactInfo : login}
+    </div>
+  );
+}
+
+export default Contact;
