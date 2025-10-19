@@ -1,0 +1,19 @@
+// Kelvin temperature
+const kelvin = 293;
+
+// Convert to Celsius
+const celsius = kelvin - 273;
+
+// Convert to Fahrenheit
+let fahrenheit = celsius * (9/5) + 32;
+fahrenheit = Math.floor(fahrenheit);
+
+// Convert to Newton
+let newton = celsius * (33/100);
+newton = Math.floor(newton);
+
+// Log results
+console.log(`Kelvin: ${kelvin}`);
+console.log(`Celsius: ${celsius}`);
+console.log(`Fahrenheit: ${fahrenheit}`);
+console.log(`Newton: ${newton}`);
