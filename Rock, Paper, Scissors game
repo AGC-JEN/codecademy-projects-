@@ -1,0 +1,91 @@
+✅ How it works
+
+User input validation
+
+const getUserChoice = userInput => {
+  userInput = userInput.toLowerCase();
+  if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors' || userInput === 'bomb') {
+    return userInput;
+  } else {
+    console.log('Error: Please choose rock, paper, or scissors.');
+  }
+};
+
+
+Converts input to lowercase.
+
+Accepts "rock", "paper", "scissors", or the secret "bomb".
+
+Prints an error for invalid input.
+
+Computer choice
+
+const getComputerChoice = () => {
+  const randomNumber = Math.floor(Math.random() * 3);
+  switch (randomNumber) {
+    case 0: return 'rock';
+    case 1: return 'paper';
+    case 2: return 'scissors';
+  }
+};
+
+
+Randomly selects a choice for the computer.
+
+Determine winner
+
+const determineWinner = (userChoice, computerChoice) => {
+  if (userChoice === 'bomb') {
+    return 'You used the secret bomb cheat! You win no matter what! 💣🔥';
+  }
+
+  if (userChoice === computerChoice) return 'The game is a tie!';
+
+  if (userChoice === 'rock') return computerChoice === 'paper' ? 'Computer wins!' : 'You win!';
+  if (userChoice === 'paper') return computerChoice === 'scissors' ? 'Computer wins!' : 'You win!';
+  if (userChoice === 'scissors') return computerChoice === 'rock' ? 'Computer wins!' : 'You win!';
+};
+
+
+Handles all cases, including the bomb cheat.
+
+Play the game
+
+const playGame = () => {
+  const userChoice = getUserChoice('bomb'); 
+  const computerChoice = getComputerChoice();
+
+  console.log(`You chose: ${userChoice}`);
+  console.log(`The computer chose: ${computerChoice}`);
+  console.log(determineWinner(userChoice, computerChoice));
+};
+
+playGame();
+
+
+You can replace 'bomb' with 'rock', 'paper', or 'scissors' to test normal play.
+
+💡 Optional Improvements
+
+Prompt the user for input dynamically
+
+const userChoice = prompt("Choose rock, paper, or scissors:").toLowerCase();
+
+
+Handle invalid input gracefully
+
+if (!userChoice) return console.log('Game cancelled!');
+
+
+Use an array for computer choices
+
+const choices = ['rock', 'paper', 'scissors'];
+const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+
+Make determineWinner shorter using an object mapping
+
+const rules = { rock: 'scissors', paper: 'rock', scissors: 'paper' };
+if (userChoice === computerChoice) return "Tie!";
+if (userChoice === 'bomb' || rules[userChoice] === computerChoice) return "You win!";
+return "Computer wins!";
