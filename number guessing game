@@ -1,0 +1,43 @@
+1️⃣ Remove duplicate compareGuesses
+
+You currently have two compareGuesses functions. Keep only the updated version that uses getAbsoluteDistance() and validates the user input. Remove the earlier one.
+
+2️⃣ Update updateScore logic
+
+Right now updateScore returns the incremented value, but usually in a game you just want to update the global score:
+
+function updateScore(winner) {
+  if (winner === 'human') {
+    humanScore++;
+  } else if (winner === 'computer') {
+    computerScore++;
+  }
+}
+
+
+No need to return anything unless you specifically want the new score.
+
+3️⃣ Example of using the game functions
+
+Here’s a small snippet to simulate a round:
+
+const humanGuess = 4;
+const computerGuess = Math.floor(Math.random() * 10);
+const target = generateTarget();
+
+console.log("Target:", target);
+console.log("Human guess:", humanGuess);
+console.log("Computer guess:", computerGuess);
+
+if (compareGuesses(humanGuess, computerGuess, target)) {
+  console.log("Human wins this round!");
+  updateScore('human');
+} else {
+  console.log("Computer wins this round!");
+  updateScore('computer');
+}
+
+advanceRound();
+
+console.log("Scores -> Human:", humanScore, "Computer:", computerScore);
+console.log("Round number:", currentRoundNumber);
