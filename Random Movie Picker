@@ -96,3 +96,179 @@ You already have:
 
 getGenres().then(populateGenreDropdown);
 playBtn.onclick = showRandomMovie;
+
+// 🎬 MAGIC EIGHT BALL / FILM FINDER PROJECT
+// =======================================
+// This file interacts with the TMDB API to fetch genres, discover movies,
+// get details about a random movie, and display them on the webpage.
+//
+// ✅ Follow each instruction below — they’re labeled by step numbers matching your guide.
+
+
+// ------------------------------------------------------------
+// 1. Save the API key you obtained from the TMDB API here.
+// Remember not to share your key publicly or commit it to a public repo!
+// ------------------------------------------------------------
+const tmdbKey = ''; // <-- Insert your TMDB API key inside the quotes.
+
+
+// ------------------------------------------------------------
+// 2. Save the TMDB API base URL here.
+// Check TMDB documentation for the correct base URL.
+// ------------------------------------------------------------
+const tmdbBaseUrl = ''; // Example: 'https://api.themoviedb.org/3'
+
+
+// Grabs the "Play" button element for user interaction
+const playBtn = document.getElementById('playBtn');
+
+
+// ------------------------------------------------------------
+// 3–12. Fetch the list of genres from TMDB.
+// ------------------------------------------------------------
+const getGenres = async () => {
+  // 3. Create variable for the "Genres" endpoint:
+  const genreRequestEndpoint = '/genre/movie/list';
+
+  // 4. Add query parameters for API key
+  const requestParams = `?api_key=${tmdbKey}`;
+
+  // 5. Construct the full URL for fetch request
+  const urlToFetch = `${tmdbBaseUrl}${genreRequestEndpoint}${requestParams}`;
+
+  // 6–7. Make function asynchronous and add error handling
+  try {
+    // 8. Fetch data and await response
+    const response = await fetch(urlToFetch);
+
+    // 9. Check if the response is OK
+    if (response.ok) {
+      // 10. Convert response to JSON
+      const jsonResponse = await response.json();
+
+      // 11. Log to console to verify
+      console.log(jsonResponse);
+
+      // 11b. Extract genres array
+      const genres = jsonResponse.genres;
+      console.log(genres);
+
+      // 12. Return the genres array
+      return genres;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+// ------------------------------------------------------------
+// 13–17. Fetch a list of movies based on the selected genre.
+// ------------------------------------------------------------
+const getMovies = async () => {
+  // getSelectedGenre() is defined in helpers.js
+  const selectedGenre = getSelectedGenre();
+
+  // 13. Save “Movie Discover” endpoint
+  const discoverMovieEndpoint = '/discover/movie';
+
+  // 14. Build request parameters with API key and selected genre
+  const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
+
+  // 14b. Construct full URL
+  const urlToFetch = `${tmdbBaseUrl}${discoverMovieEndpoint}${requestParams}`;
+
+  // 15. Make function asynchronous, use try/catch for errors
+  try {
+    const response = await fetch(urlToFetch);
+
+    // 16. Check if fetch worked
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
+
+      // 17. Extract movie list
+      const movies = jsonResponse.results;
+      console.log(movies);
+
+      // 17b. Return movies array
+      return movies;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+// ------------------------------------------------------------
+// 18–23. Fetch detailed info about a single movie.
+// ------------------------------------------------------------
+const getMovieInfo = async (movie) => {
+  // 18. Get movie ID
+  const movieId = movie.id;
+
+  // 19. Use the movie “Details” endpoint
+  const movieEndpoint = `/movie/${movieId}`;
+
+  // 20. Create query params and build URL
+  const requestParams = `?api_key=${tmdbKey}`;
+  const urlToFetch = `${tmdbBaseUrl}${movieEndpoint}${requestParams}`;
+
+  try {
+    // 21. Fetch movie info
+    const response = await fetch(urlToFetch);
+
+    // 22. Check response and convert to JSON
+    if (response.ok) {
+      const movieInfo = await response.json();
+
+      // 23. Return the movie info object
+      return movieInfo;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+// ------------------------------------------------------------
+// 24–27. Display a random movie from the list of results.
+// ------------------------------------------------------------
+const showRandomMovie = async () => {
+  const movieInfo = document.getElementById('movieInfo');
+
+  // Clear out previous movie if one is showing
+  if (movieInfo.childNodes.length > 0) {
+    clearCurrentMovie();
+  }
+
+  // 24. Get a list of movies from the selected genre
+  const movies = await getMovies();
+
+  // 25. Select a random movie
+  const randomMovie = getRandomMovie(movies);
+
+  // 26. Get detailed info for that random movie
+  const info = await getMovieInfo(randomMovie);
+
+  // 27. Display the movie info on the page
+  displayMovie(info);
+};
+
+
+// ------------------------------------------------------------
+// Event listener setup
+// ------------------------------------------------------------
+getGenres().then(populateGenreDropdown); // populates genre dropdown when page loads
+playBtn.onclick = showRandomMovie; // shows random movie when user clicks play
+
+
+// ------------------------------------------------------------
+// 28. 🎉 Congratulations!
+// - You can now like or dislike random movies based on genre
+// - Challenge ideas:
+//   * Use displayMovie() in helpers.js to include more info like cast or release date
+//   * Store liked/disliked movies and show lists
+//   * Randomize results across multiple pages from TMDB
+// ------------------------------------------------------------
+
