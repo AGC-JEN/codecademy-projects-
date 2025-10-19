@@ -97,6 +97,43 @@ const alSmith = new HighSchool('Al E. Smith', 415, [
   'Volleyball',
   'Track and Field'
 ]);
+// MiddleSchool subclass
+class MiddleSchool extends School {
+  constructor(name, numberOfStudents, clubs) {
+    super(name, 'middle', numberOfStudents);
+    this._clubs = clubs;
+  }
+
+  get clubs() {
+    return this._clubs;
+  }
+}
+
+// Catalog of schools
+class SchoolCatalog {
+  constructor() {
+    this._primary = [];
+    this._middle = [];
+    this._high = [];
+  }
+
+  addSchool(school) {
+    if (school instanceof PrimarySchool) {
+      this._primary.push(school);
+    } else if (school instanceof MiddleSchool) {
+      this._middle.push(school);
+    } else if (school instanceof HighSchool) {
+      this._high.push(school);
+    }
+  }
+
+  showCatalog() {
+    console.log('Primary Schools:', this._primary.map(s => s.name));
+    console.log('Middle Schools:', this._middle.map(s => s.name));
+    console.log('High Schools:', this._high.map(s => s.name));
+  }
+}
+
 
 // Step 18: Access sportsTeams getter
 alSmith.sportsTeams;
