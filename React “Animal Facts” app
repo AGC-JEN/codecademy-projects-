@@ -1,0 +1,65 @@
+// NOTE: This file comes with registration for the React course setup.
+import { animals } from './animals';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+
+// STEP 2: Get the container element from index.html
+const container = document.getElementById('app');
+
+// STEP 3: Create a React root
+const root = createRoot(container);
+
+// STEP 4: Create constants for title and animalFacts JSX
+const title = ''; // Will use default via ternary or || operator
+
+// STEP 7: Add background image constant
+const background = (
+  <img 
+    className="background" 
+    alt="ocean" 
+    src="/images/ocean.jpg" 
+  />
+);
+
+// STEP 9: Create array of animal images dynamically
+const images = [];
+for (const animal in animals) {
+  images.push(
+    <img
+      key={animal}
+      className="animal"
+      alt={animal}
+      src={animals[animal].image}
+      aria-label={animal}
+      role="button"
+      onClick={displayFact}
+    />
+  );
+}
+
+// STEP 11: Create displayFact() handler
+function displayFact(e) {
+  const selectedAnimal = e.target.alt;
+  const animalFacts = animals[selectedAnimal].facts;
+  const randomIndex = Math.floor(Math.random() * animalFacts.length);
+  const funFact = animalFacts[randomIndex];
+  document.getElementById('fact').innerHTML = funFact;
+}
+
+// STEP 14: Optional feature — toggle background visibility
+const showBackground = true;
+
+// STEP 8 & 10: Compose full JSX with conditional background
+const animalFacts = (
+  <div>
+    <h1>{title || 'Click an animal for a fun fact'}</h1>
+    {showBackground && background}
+    <div className="animals">
+      {images}
+    </div>
+    <p id="fact"></p>
+  </div>
+);
+
+// STEP 6: Render to the DOM
+root.render(animalFacts);
