@@ -1,0 +1,88 @@
+1. Accessibility
+
+✅ You have alt attributes for all images—excellent.
+
+✅ Semantic sections (<header>, <section>, <footer>) are used correctly.
+
+💡 Optional improvement: Add aria-label or role="navigation" to <nav> for screen readers:
+
+<nav role="navigation">
+  <ul>...</ul>
+</nav>
+
+2. Responsive Design
+
+Flexbox for .products and .team-members ensures cards wrap nicely on smaller screens.
+
+The hero section uses padding, which works well, but consider adding a media query to reduce font-size on very small screens:
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+3. Styling Notes
+
+text-shadow on the hero heading is great for readability.
+
+Using max-width and margin: 0 auto in .mission centers content nicely.
+
+💡 You could add a little spacing between the section heading and the first paragraph for better hierarchy:
+
+.mission h2, .team h2, #products h2 {
+  margin-bottom: 1.5rem;
+}
+
+4. Hover States
+
+You have hover for navigation links; consider adding subtle hover effects on product and team cards:
+
+.product-card:hover, .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+
+This adds a bit of interactivity.
+
+5. Consistency
+
+All section headings are center-aligned except .mission—which is intentionally centered. Perfect.
+
+Colors are consistent (blue for header/footer, white for cards), giving a clean brand identity.
+
+6. Optional Enhancements
+
+Back-to-top button: For long pages, a small fixed button improves navigation.
+
+Smooth scrolling: Add this CSS:
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+Responsive hero image: Could add min-height or vh units:
+
+.hero {
+  min-height: 60vh;
+}
+
+✅ Summary
+
+Your page is already:
+
+Semantic
+
+Responsive
+
+Accessible
+
+Visually clean
+
+Optional improvements include small hover effects, smoother responsive text scaling, and minor accessibility tweaks.
