@@ -1,0 +1,41 @@
+// Function to randomly choose an event
+const getRandEvent = () => {
+  const random = Math.floor(Math.random() * 3); // local to the function
+  if (random === 0) {
+    return 'Marathon';
+  } else if (random === 1) {
+    return 'Triathlon';
+  } else if (random === 2) {
+    return 'Pentathlon';
+  }
+};
+
+// Function to determine training days based on event
+const getTrainingDays = event => {
+  let days; // local variable
+  if (event === 'Marathon') {
+    days = 50;
+  } else if (event === 'Triathlon') {
+    days = 100;
+  } else if (event === 'Pentathlon') {
+    days = 200;
+  }
+  return days;
+};
+
+// Functions to log event and training days
+const logEvent = (name, event) => {
+  console.log(`${name}'s event is: ${event}`);
+};
+
+const logTime = (name, days) => {
+  console.log(`${name}'s time to train is: ${days} days`);
+};
+
+// Main program
+const name = 'Nala';
+const event = getRandEvent();
+const days = getTrainingDays(event);
+
+logEvent(name, event);
+logTime(name, days);
