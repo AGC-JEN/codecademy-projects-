@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Table Reference with Examples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8e1;
+      color: #333;
+      margin: 20px;
+    }
+
+    h1, h2 {
+      color: #2a5d84;
+    }
+
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      border: 1px solid #2a5d84;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #a3c4f3;
+    }
+
+    code {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* Example table styles */
+    .example-table td {
+      text-align: center;
+      background-color: #e3f2fd;
+    }
+
+    .example-table th {
+      background-color: #90caf9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HTML Table Reference</h1>
+
+  <h2>Table Tags</h2>
+  <table>
+    <tr>
+      <th>Tag</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>&lt;table&gt;</code></td>
+      <td>Table</td>
+      <td>The wrapper element for all HTML tables.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;thead&gt;</code></td>
+      <td>Table Head</td>
+      <td>The set of rows defining the column headers in a table.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;tbody&gt;</code></td>
+      <td>Table Body</td>
+      <td>The set of rows containing actual table data.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;tr&gt;</code></td>
+      <td>Table Row</td>
+      <td>The table row container.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;td&gt;</code></td>
+      <td>Table Data</td>
+      <td>The table cell containing data.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;tfoot&gt;</code></td>
+      <td>Table Foot</td>
+      <td>The set of rows defining the footer in a table.</td>
+    </tr>
+  </table>
+
+  <h2>Table Attributes</h2>
+  <table>
+    <tr>
+      <th>Attribute</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>colspan</code></td>
+      <td>Column Span</td>
+      <td>Defines how many columns a <code>&lt;td&gt;</code> element should span.</td>
+    </tr>
+    <tr>
+      <td><code>rowspan</code></td>
+      <td>Row Span</td>
+      <td>Defines how many rows a <code>&lt;td&gt;</code> element should span.</td>
+    </tr>
+  </table>
+
+</body>
+</html>
