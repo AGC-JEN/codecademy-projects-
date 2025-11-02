@@ -1,0 +1,206 @@
+import React, { useState } from "react";
+import { createRoot } from "react-dom/client";
+import { 
+  RouterProvider, 
+  createBrowserRouter, 
+  createRoutesFromElements, 
+  Route, 
+  Navigate, 
+  Outlet, 
+  Link 
+} from "react-router-dom";
+
+// --- ROUTES ---
+export const ROUTES = {
+  CONTACTS: "contacts",
+  APPOINTMENTS: "appointments"
+};
+
+// --- Root Component ---
+function Root() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <nav>
+        <Link to={ROUTES.CONTACTS} style={{ marginRight: '10px' }}>Contacts</Link>
+        <Link to={ROUTES.APPOINTMENTS}>Appointments</Link>
+      </nav>
+      <hr />
+      <Outlet />
+    </div>
+  );
+}
+
+// --- Tile Component ---
+const Tile = ({ name, description }) => (
+  <div style={{ marginBottom: '10px', border: '1px solid #ccc', padding: '5px' }}>
+    <p className="tile-title">{name}</p>
+    {Object.values(description).map((val, idx) => (
+      <p key={idx} className="tile">{val}</p>
+    ))}
+  </div>
+);
+
+// --- TileList Component ---
+const TileList = ({ items }) => (
+  <div>
+    {items.map((item, index) => (
+      <Tile key={index} name={item.name} description={item} />
+    ))}
+  </div>
+);
+
+// --- ContactForm Component ---
+const ContactForm = ({ name, setName, phone, setPhone, email, setEmail, handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
+    <div>
+      <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} required />
+    </div>
+    <div>
+      <input 
+        type="tel" 
+        placeholder="Phone" 
+        pattern="^\d{3}-\d{3}-\d{4}$" 
+        value={phone} 
+        onChange={e => setPhone(e.target.value)} 
+        required 
+      />
+    </div>
+    <div>
+      <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+    </div>
+    <button type="submit">Add Contact</button>
+  </form>
+);
+
+// --- ContactPicker Component ---
+const ContactPicker = ({ contacts, value, handleChange }) => (
+  <select value={value} onChange={handleChange}>
+    <option value="">No Contact Selected</option>
+    {contacts.map((contact, idx) => (
+      <option key={idx} value={contact.name}>{contact.name}</option>
+    ))}
+  </select>
+);
+
+// --- AppointmentForm Component ---
+const AppointmentForm = ({ name, setName, contact, setContact, date, setDate, time, setTime, contacts, handleSubmit }) => {
+  const getTodayString = () => new Date().toISOString().split("T")[0];
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <input type="text" placeholder="Title" value={name} onChange={e => setName(e.target.value)} required />
+      </div>
+      <div>
+        <ContactPicker contacts={contacts} value={contact} handleChange={e => setContact(e.target.value)} />
+      </div>
+      <div>
+        <input type="date" value={date} min={getTodayString()} onChange={e => setDate(e.target.value)} required />
+      </div>
+      <div>
+        <input type="time" value={time} onChange={e => setTime(e.target.value)} required />
+      </div>
+      <button type="submit">Add Appointment</button>
+    </form>
+  );
+};
+
+// --- ContactsPage Component ---
+const ContactsPage = ({ contacts, addContact }) => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!contacts.some(c => c.name === name)) {
+      addContact({ name, phone, email });
+      setName(""); setPhone(""); setEmail("");
+    } else {
+      alert("Duplicate contact!");
+    }
+  };
+
+  return (
+    <div>
+      <section>
+        <h2>Add Contact</h2>
+        <ContactForm 
+          name={name} setName={setName} 
+          phone={phone} setPhone={setPhone} 
+          email={email} setEmail={setEmail} 
+          handleSubmit={handleSubmit} 
+        />
+      </section>
+      <hr />
+      <section>
+        <h2>Contacts</h2>
+        <TileList items={contacts} />
+      </section>
+    </div>
+  );
+};
+
+// --- AppointmentsPage Component ---
+const AppointmentsPage = ({ appointments, contacts, addAppointment }) => {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    addAppointment({ name, contact, date, time });
+    setName(""); setContact(""); setDate(""); setTime("");
+  };
+
+  return (
+    <div>
+      <section>
+        <h2>Add Appointment</h2>
+        <AppointmentForm 
+          name={name} setName={setName} 
+          contact={contact} setContact={setContact} 
+          date={date} setDate={setDate} 
+          time={time} setTime={setTime} 
+          contacts={contacts} handleSubmit={handleSubmit} 
+        />
+      </section>
+      <hr />
+      <section>
+        <h2>Appointments</h2>
+        <TileList items={appointments} />
+      </section>
+    </div>
+  );
+};
+
+// --- Main App Component ---
+function App() {
+  const [contacts, setContacts] = useState([]);
+  const [appointments, setAppointments] = useState([]);
+
+  const addContact = contact => setContacts(prev => [...prev, contact]);
+  const addAppointment = appointment => setAppointments(prev => [...prev, appointment]);
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<Root />}>
+      <Route index element={<Navigate to={ROUTES.CONTACTS} replace />} />
+      <Route 
+        path={ROUTES.CONTACTS} 
+        element={<ContactsPage contacts={contacts} addContact={addContact} />} 
+      />
+      <Route 
+        path={ROUTES.APPOINTMENTS} 
+        element={<AppointmentsPage appointments={appointments} contacts={contacts} addAppointment={addAppointment} />} 
+      />
+    </Route>
+  ));
+
+  return <RouterProvider router={router} />;
+}
+
+// --- Render App ---
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<App />);
