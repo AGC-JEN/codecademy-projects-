@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+
+// --- Video URLs ---
+const VIDEOS = {
+  fast: 'https://content.codecademy.com/courses/React/react_video-fast.mp4',
+  slow: 'https://content.codecademy.com/courses/React/react_video-slow.mp4',
+  cute: 'https://content.codecademy.com/courses/React/react_video-cute.mp4',
+  eek: 'https://content.codecademy.com/courses/React/react_video-eek.mp4'
+};
+
+// --- Video Component ---
+function Video({ src }) {
+  return (
+    <div>
+      <video src={src} controls autoPlay muted width="480">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  );
+}
+
+// --- Menu Component ---
+function Menu({ onSelectVideo }) {
+  const clickHandler = (event) => {
+    const name = event.target.value;
+    onSelectVideo(name);
+  };
+
+  return (
+    <form onClick={clickHandler}>
+      {Object.keys(VIDEOS).map((key) => (
+        <label key={key} style={{ marginRight: '10px' }}>
+          <input type="radio" name="src" value={key} />
+          {key}
+        </label>
+      ))}
+    </form>
+  );
+}
+
+// --- App Component ---
+function App() {
+  const [src, setSrc] = useState(VIDEOS.fast);
+
+  // Function to update the video source
+  const onSelectVideoHandler = (newVideo) => {
+    setSrc(VIDEOS[newVideo]);
+  };
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '40px' }}>
+      <h1>Video Player</h1>
+      <Menu onSelectVideo={onSelectVideoHandler} />
+      <Video src={src} />
+    </div>
+  );
+}
+
+// --- Render ---
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App />);
