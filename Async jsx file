@@ -1,0 +1,156 @@
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { configureStore, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+
+// --- Simulated API ---
+// Normally you'd use fetch('api/articles/...'), here we simulate
+let mockDatabase = {
+  1: [
+    { id: 1, articleId: 1, text: 'First comment!' },
+    { id: 2, articleId: 1, text: 'Interesting read.' }
+  ]
+};
+
+// Simulate network delay
+const mockFetchComments = (articleId) =>
+  new Promise((res) => setTimeout(() => res(mockDatabase[articleId] || []), 500));
+
+const mockPostComment = ({ articleId, comment }) =>
+  new Promise((res) => {
+    setTimeout(() => {
+      const newComment = { id: Date.now(), articleId, text: comment };
+      if (!mockDatabase[articleId]) mockDatabase[articleId] = [];
+      mockDatabase[articleId].push(newComment);
+      res(newComment);
+    }, 500);
+  });
+
+// --- Redux Slice ---
+export const loadCommentsForArticleId = createAsyncThunk(
+  'comments/loadCommentsForArticleId',
+  async (articleId) => {
+    const json = await mockFetchComments(articleId);
+    return { articleId, comments: json };
+  }
+);
+
+export const postCommentForArticleId = createAsyncThunk(
+  'comments/postCommentForArticleId',
+  async ({ articleId, comment }) => {
+    const json = await mockPostComment({ articleId, comment });
+    return json;
+  }
+);
+
+const commentsSlice = createSlice({
+  name: 'comments',
+  initialState: {
+    byArticleId: {},
+    isLoadingComments: false,
+    createCommentIsPending: false
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadCommentsForArticleId.pending, (state) => {
+        state.isLoadingComments = true;
+      })
+      .addCase(loadCommentsForArticleId.fulfilled, (state, action) => {
+        state.byArticleId[action.payload.articleId] = action.payload.comments;
+        state.isLoadingComments = false;
+      })
+      .addCase(postCommentForArticleId.pending, (state) => {
+        state.createCommentIsPending = true;
+      })
+      .addCase(postCommentForArticleId.fulfilled, (state, action) => {
+        const articleId = action.payload.articleId;
+        if (!state.byArticleId[articleId]) state.byArticleId[articleId] = [];
+        state.byArticleId[articleId].push(action.payload);
+        state.createCommentIsPending = false;
+      });
+  },
+});
+
+const store = configureStore({
+  reducer: { comments: commentsSlice.reducer },
+});
+
+const selectComments = (state) => state.comments.byArticleId;
+const isLoadingComments = (state) => state.comments.isLoadingComments;
+const createCommentIsPending = (state) => state.comments.createCommentIsPending;
+
+// --- Components ---
+function Comment({ comment }) {
+  return <li>{comment.text}</li>;
+}
+
+function CommentList({ comments }) {
+  if (!comments) return null;
+  return (
+    <ul>
+      {comments.map((c) => (
+        <Comment key={c.id} comment={c} />
+      ))}
+    </ul>
+  );
+}
+
+function CommentForm({ articleId }) {
+  const dispatch = useDispatch();
+  const [comment, setComment] = useState('');
+  const isPending = useSelector(createCommentIsPending);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!comment.trim()) return;
+    dispatch(postCommentForArticleId({ articleId, comment }));
+    setComment('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input value={comment} onChange={(e) => setComment(e.target.value)} />
+      <button type="submit" disabled={isPending}>Submit</button>
+    </form>
+  );
+}
+
+function Comments({ articleId }) {
+  const dispatch = useDispatch();
+  const comments = useSelector(selectComments);
+  const loading = useSelector(isLoadingComments);
+
+  useEffect(() => {
+    dispatch(loadCommentsForArticleId(articleId));
+  }, [dispatch, articleId]);
+
+  const commentsForArticle = comments[articleId] || [];
+
+  if (loading) return <div>Loading comments...</div>;
+
+  return (
+    <div>
+      <h3>Comments</h3>
+      <CommentList comments={commentsForArticle} />
+      <CommentForm articleId={articleId} />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div style={{ width: '500px', margin: '40px auto' }}>
+      <h1>Article 1</h1>
+      <Comments articleId={1} />
+    </div>
+  );
+}
+
+// --- Render ---
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
