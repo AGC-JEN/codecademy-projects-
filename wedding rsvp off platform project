@@ -1,0 +1,80 @@
+1️⃣ Fork the repository
+
+Go to the original repository: Codecademy/wedding-rsvp-off-platform-project
+
+Click the Fork button at the top-right corner.
+
+This creates a copy of the repository under your GitHub account.
+
+2️⃣ Clone your forked repository locally
+
+On your forked repo page, click the Code button to get the SSH or HTTPS URL.
+
+In your terminal, run:
+
+git clone git@github.com:<your-username>/wedding-rsvp-off-platform-project.git
+
+
+Replace <your-username> with your GitHub username.
+
+Navigate into the cloned repository:
+
+cd wedding-rsvp-off-platform-project
+
+3️⃣ Create a new branch
+
+Make a branch specifically for your RSVP changes:
+
+git checkout -b rsvp-yourname
+
+
+Replace yourname with your name or identifier. This switches you to the new branch immediately.
+
+4️⃣ Update guests.md
+
+Open the file guests.md in your editor.
+
+Add a new row in the Markdown table with your name and the number of guests coming with you. Example:
+
+| Name        | Guests |
+|-------------|--------|
+| Your Name   | 2      |
+
+
+Save the file.
+
+5️⃣ Stage and commit your changes
+
+Stage the updated file:
+
+git add guests.md
+
+
+Commit your changes with a descriptive message:
+
+git commit -m "Added my name and guest count to the RSVP list"
+
+6️⃣ Push your branch to GitHub
+
+Push your rsvp-yourname branch to your forked repository:
+
+git push origin rsvp-yourname
+
+7️⃣ Create a pull request
+
+Go to your forked repository on GitHub.
+
+You’ll see a prompt to Compare & pull request for the branch you just pushed.
+
+Click it.
+
+Update the title to something descriptive, e.g.,:
+
+Add RSVP for Your Name
+
+
+Ensure the description explains your changes (GitHub may auto-fill a template).
+
+Check all the boxes in the checklist if applicable.
+
+Click Create pull request.
